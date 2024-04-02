@@ -11,6 +11,7 @@ public class CustomerDto {
     private String name;
     private String email;
     private String phone;
+    private String birthday;
     private String cpf;
     private Long id;
 
@@ -19,6 +20,7 @@ public class CustomerDto {
         this.email = customer.getEmail();
         this.phone = customer.getPhone();
         this.cpf = customer.getCpf();
+        this.birthday = customer.getBirthday();
     }
 
     

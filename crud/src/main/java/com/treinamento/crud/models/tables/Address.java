@@ -1,6 +1,7 @@
 package com.treinamento.crud.models.tables;
 
 import com.treinamento.crud.models.dto.AddressDto;
+import com.treinamento.crud.models.dto.FullSizeDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,6 +31,13 @@ public class Address {
     private String street;
     @Column(length = 10)
     private int number;
+    @Column(length = 14)
+    private String zipCode;
+    @Column(length = 50)
+    private String district;
+    @Column(length = 20)
+    private String complement;
+
     
     @ManyToOne
     @JoinColumn(name = "IdCustomer")
@@ -40,6 +48,18 @@ public class Address {
         this.customer = customer;
         this.street = dto.getStreet();
         this.number = dto.getNumber();
+        this.zipCode = dto.getZipCode();
+        this.district = dto.getDistrict();
+        this.complement = dto.getComplement();
+    }
+
+    public Address(FullSizeDto dto, Customer customer){
+        this.customer = customer;
+        this.street = dto.getStreet();
+        this.number = dto.getNumber();
+        this.zipCode = dto.getZipCode();
+        this.district = dto.getDistrict();
+        this.complement = dto.getComplement();
     }
 
 

@@ -3,6 +3,7 @@ package com.treinamento.crud.models.tables;
 import java.util.List;
 
 import com.treinamento.crud.models.dto.CustomerDto;
+import com.treinamento.crud.models.dto.FullSizeDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +34,8 @@ public class Customer {
     private String name;
     @Column(length = 14)
     private String phone;
+    @Column(length = 14)
+    private String birthday;
     @Column(length = 20)
     private String email;
     @OneToMany(mappedBy = "customer")
@@ -43,7 +46,16 @@ public class Customer {
         this.cpf = dto.getCpf();
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
+        this.birthday = dto.getBirthday();
     }
+
+    public Customer(FullSizeDto dto){
+        this.name = dto.getName();
+        this.cpf = dto.getCpf();
+        this.email = dto.getEmail();
+        this.birthday = dto.getBirthday();
+    }
+
 
     public void update(CustomerDto dto){
         if(dto.getName() != null) {
