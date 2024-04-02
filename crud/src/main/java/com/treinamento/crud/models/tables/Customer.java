@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,14 +31,19 @@ public class Customer {
 
     @Column(length = 11)
     private String cpf;
+
     @Column(length = 50)
     private String name;
+
     @Column(length = 14)
     private String phone;
+
     @Column(length = 14)
     private String birthday;
+
     @Column(length = 20)
     private String email;
+
     @OneToMany(mappedBy = "customer")
     private List<Address> address;
 

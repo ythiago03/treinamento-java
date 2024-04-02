@@ -19,6 +19,7 @@ import com.treinamento.crud.models.tables.Customer;
 import com.treinamento.crud.service.CustomerService;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -28,7 +29,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity<CustomerDto> cadastrarCliente(@RequestBody CustomerDto dto){
+    public ResponseEntity<CustomerDto> cadastrarCliente(@Valid @RequestBody CustomerDto dto){
         customerService.save(dto);
         return ResponseEntity.ok(dto);
 
@@ -36,7 +37,7 @@ public class CustomerController {
 
     @PostMapping("/apiCustomer")
     @CrossOrigin("http://localhost:4200/")
-    public ResponseEntity<FullSizeDto> cadastrarClienteApi(@RequestBody FullSizeDto dto){
+    public ResponseEntity<FullSizeDto> cadastrarClienteApi(@Valid @RequestBody FullSizeDto dto){
         System.out.println(dto.getName());
         customerService.saveApi(dto);
         return ResponseEntity.ok(dto);
@@ -51,11 +52,12 @@ public class CustomerController {
     public CustomerDto buscarCliente(@PathVariable Long id){
         Customer customer = customerService.get(id);
         return new CustomerDto(customer);
-    }
+    }  
 
     @GetMapping
-    public void buscarClienteTeste(@RequestBody CustomerDto dto){
+    public ResponseEntity<List<CustomerDto>> buscarClienteTeste(@RequestBody CustomerDto dto){
         List<Customer> list = customerService.getAll(dto);
+        return ResponseEntity.ok(list.stream().map(CustomerDto:: new).toList());
     }
 
     @PutMapping
