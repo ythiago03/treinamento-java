@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
+import com.treinamento.crud.models.dto.SearchDto;
 import com.treinamento.crud.models.tables.Customer;
 import com.treinamento.crud.repository.CustomerRepository;
 
@@ -32,6 +33,10 @@ public class CustomerService {
     }
     public List<Customer> getAll(CustomerDto dto){
         return customerRepository.findAllByName(dto.getName());
+    }
+
+    public List<Customer> getAllByApi(String name){
+        return customerRepository.findAllByName(name);
     }
 
     public void put(CustomerDto dto){

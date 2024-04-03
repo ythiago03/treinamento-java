@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
+import com.treinamento.crud.models.dto.SearchDto;
 import com.treinamento.crud.models.tables.Customer;
 import com.treinamento.crud.service.CustomerService;
 
@@ -58,6 +59,14 @@ public class CustomerController {
     public ResponseEntity<List<CustomerDto>> buscarClienteTeste(@RequestBody CustomerDto dto){
         List<Customer> list = customerService.getAll(dto);
         return ResponseEntity.ok(list.stream().map(CustomerDto:: new).toList());
+    }
+
+    @GetMapping("/apiCustomer/{name}")
+    @CrossOrigin
+    public ResponseEntity<List<CustomerDto>> buscarClienteApi(@PathVariable String name){
+        List<Customer> list = customerService.getAllByApi(name);
+        return ResponseEntity.ok(list.stream().map(CustomerDto:: new).toList());
+
     }
 
     @PutMapping
