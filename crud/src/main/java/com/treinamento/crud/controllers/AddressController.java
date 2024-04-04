@@ -1,5 +1,7 @@
 package com.treinamento.crud.controllers;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.treinamento.crud.models.dto.AddressDto;
+import com.treinamento.crud.models.dto.FullSizeDto;
 import com.treinamento.crud.models.tables.Address;
 import com.treinamento.crud.service.AddressService;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -25,6 +29,12 @@ public class AddressController {
     @PostMapping
     public void post(@RequestBody AddressDto dto){
         addressService.saveAddress(dto);
+    }
+
+    @PostMapping("/apiCustomer")
+    @CrossOrigin("http://localhost:4200/")
+    public void cadastrarEnderecoApi(@Valid @RequestBody FullSizeDto dto){
+        addressService.saveAddressApi(dto);
     }
 
     @DeleteMapping("{id}")

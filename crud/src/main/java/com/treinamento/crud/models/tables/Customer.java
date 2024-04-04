@@ -1,10 +1,12 @@
 package com.treinamento.crud.models.tables;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,8 +46,10 @@ public class Customer {
     @Column(length = 20)
     private String email;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Address> address;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Address> address = new ArrayList<Address>();
+
+
 
     public Customer(CustomerDto dto){
         this.name = dto.getName();
@@ -60,7 +64,10 @@ public class Customer {
         this.cpf = dto.getCpf();
         this.email = dto.getEmail();
         this.birthday = dto.getBirthday();
+        Address address = new Address(dto,this);
+        this.address.add(address);
     }
+
 
 
     public void update(CustomerDto dto){

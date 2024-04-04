@@ -31,6 +31,14 @@ public class AddressService {
         customer.getAddress().add(address);
     }
 
+    public void saveAddressApi(FullSizeDto dto){
+        Customer customer = customerRepository.getReferenceById(dto.getIdCustomer());
+        Address address = new Address(dto, customer);
+        addressRepository.save(address);
+        customer.getAddress().add(address);
+    }
+
+
     public void deleteAddress(Long id){
         addressRepository.deleteById(id);
     }

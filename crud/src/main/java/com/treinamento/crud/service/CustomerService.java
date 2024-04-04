@@ -6,15 +6,18 @@ import org.springframework.stereotype.Service;
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
 import com.treinamento.crud.models.dto.SearchDto;
+import com.treinamento.crud.models.tables.Address;
 import com.treinamento.crud.models.tables.Customer;
+import com.treinamento.crud.repository.AddressRepository;
 import com.treinamento.crud.repository.CustomerRepository;
 
 import lombok.AllArgsConstructor;
 
-@Service//Indica que é um serviço
+@Service//Indica que é um serviços
 @AllArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final AddressRepository addressRepository;
 
     public void save(CustomerDto dto){
         Customer customer = new Customer(dto);

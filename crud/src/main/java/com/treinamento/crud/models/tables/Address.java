@@ -60,6 +60,7 @@ public class Address {
         this.zipCode = dto.getZipCode();
         this.district = dto.getDistrict();
         this.complement = dto.getComplement();
+        System.out.println(this.getZipCode());
     }
 
 

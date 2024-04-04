@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
-import com.treinamento.crud.models.dto.SearchDto;
 import com.treinamento.crud.models.tables.Customer;
 import com.treinamento.crud.service.CustomerService;
 
@@ -39,7 +38,7 @@ public class CustomerController {
     @PostMapping("/apiCustomer")
     @CrossOrigin("http://localhost:4200/")
     public ResponseEntity<FullSizeDto> cadastrarClienteApi(@Valid @RequestBody FullSizeDto dto){
-        System.out.println(dto.getName());
+        System.out.println(dto);
         customerService.saveApi(dto);
         return ResponseEntity.ok(dto);
     }
@@ -63,9 +62,13 @@ public class CustomerController {
 
     @GetMapping("/apiCustomer/{name}")
     @CrossOrigin
-    public ResponseEntity<List<CustomerDto>> buscarClienteApi(@PathVariable String name){
+    public ResponseEntity<List<FullSizeDto>> buscarClienteApi(@PathVariable String name){
         List<Customer> list = customerService.getAllByApi(name);
-        return ResponseEntity.ok(list.stream().map(CustomerDto:: new).toList());
+       List<FullSizeDto> newList = list.stream().map(FullSizeDto::new).toList();
+    //    for (FullSizeDto fullSizeDto : newList) {
+    //         System.out.println(fullSizeDto.getName()+" "+fullSizeDto.getStreet());
+    //    }
+        return ResponseEntity.ok(list.stream().map(FullSizeDto:: new).toList());
 
     }
 

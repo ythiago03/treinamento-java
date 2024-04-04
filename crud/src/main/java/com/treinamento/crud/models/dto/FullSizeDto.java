@@ -1,5 +1,7 @@
 package com.treinamento.crud.models.dto;
 
+import com.treinamento.crud.models.tables.Customer;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -44,5 +46,16 @@ public class FullSizeDto {
     @Min(1)
     private int number;
 
+
+     public FullSizeDto(Customer customer) {
+            this.name = customer.getName();
+            this.birthday = customer.getBirthday();
+            this.cpf = customer.getCpf();
+            this.email = customer.getEmail();
+         if(!customer.getAddress().isEmpty())this.complement = customer.getAddress().get(0).getComplement();
+         if(!customer.getAddress().isEmpty())this.zipCode = customer.getAddress().get(0).getZipCode();
+         if(!customer.getAddress().isEmpty())this.district = customer.getAddress().get(0).getDistrict();
+         if(!customer.getAddress().isEmpty())this.number = customer.getAddress().get(0).getNumber();
+    }
     
 }
