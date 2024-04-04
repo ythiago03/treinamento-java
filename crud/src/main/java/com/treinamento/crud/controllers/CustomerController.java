@@ -48,8 +48,16 @@ public class CustomerController {
         customerService.delete(id);
     }
 
+    @DeleteMapping("/apiCustomer/{cpf}")
+    @CrossOrigin
+    @Transactional
+    public void deletarClienteApi(@PathVariable String cpf){
+        customerService.deleteApi(cpf);
+    }
+
     @GetMapping("{id}")
     public CustomerDto buscarCliente(@PathVariable Long id){
+        System.out.println(id);
         Customer customer = customerService.get(id);
         return new CustomerDto(customer);
     }  
@@ -64,7 +72,7 @@ public class CustomerController {
     @CrossOrigin
     public ResponseEntity<List<FullSizeDto>> buscarClienteApi(@PathVariable String name){
         List<Customer> list = customerService.getAllByApi(name);
-       List<FullSizeDto> newList = list.stream().map(FullSizeDto::new).toList();
+        //List<FullSizeDto> newList = list.stream().map(FullSizeDto::new).toList();
     //    for (FullSizeDto fullSizeDto : newList) {
     //         System.out.println(fullSizeDto.getName()+" "+fullSizeDto.getStreet());
     //    }

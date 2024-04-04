@@ -31,6 +31,9 @@ public class CustomerService {
     public void delete(Long id){
         customerRepository.deleteById(id);
     }    
+    public void deleteApi(String cpf){
+        customerRepository.deleteByCpf(cpf);
+    }    
     public Customer get(Long id){
         return customerRepository.getReferenceById(id);
     }
