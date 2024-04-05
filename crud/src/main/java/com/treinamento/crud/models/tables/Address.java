@@ -2,6 +2,7 @@ package com.treinamento.crud.models.tables;
 
 import com.treinamento.crud.models.dto.AddressDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
+import com.treinamento.crud.models.dto.PutDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -67,5 +68,13 @@ public class Address {
     public void update(AddressDto dto){
         if(dto.getStreet() != null) this.street = dto.getStreet();
         if(dto.getNumber() >=0) this.number = dto.getNumber();
+    }
+
+    public void updateApi(PutDto dto){
+        if(dto.getZipCode() != "") this.zipCode = dto.getZipCode();
+        if(dto.getStreet() != "") this.street = dto.getStreet();
+        if(dto.getDistrict() != "") this.district = dto.getDistrict();
+        if(dto.getNumber() >=0) this.number = dto.getNumber();
+        if(dto.getComplement() != "") this.complement = dto.getComplement();
     }
 }

@@ -14,4 +14,6 @@ import com.treinamento.crud.models.tables.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     List<Customer> findAllByName(String name);
     Long deleteByCpf(String cpf);
+    Customer getReferenceByCpf(String cpf);
+
 } 

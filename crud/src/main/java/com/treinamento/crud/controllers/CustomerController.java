@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
+import com.treinamento.crud.models.dto.PutDto;
 import com.treinamento.crud.models.tables.Customer;
 import com.treinamento.crud.service.CustomerService;
 
@@ -84,5 +85,12 @@ public class CustomerController {
     @Transactional
     public void atualizarCliente(@RequestBody CustomerDto dto){
         customerService.put(dto);
+    }
+
+    @PutMapping("/apiCustomer/{cpf}")
+    @Transactional
+    @CrossOrigin
+    public void atualizarClienteApi(@PathVariable String cpf, @RequestBody PutDto dto ){
+        customerService.putApi(cpf, dto);
     }
 }

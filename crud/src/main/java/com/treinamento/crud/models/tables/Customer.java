@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
+import com.treinamento.crud.models.dto.PutDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -87,5 +88,18 @@ public class Customer {
             this.phone = dto.getPhone();
             System.out.println(this.getPhone());
         }
+    }
+
+    public void updateApi(PutDto dto){
+        if(dto.getName() != "") {
+            this.name = dto.getName();
+        }
+        if(dto.getEmail() != "") {
+            this.email = dto.getEmail();
+        }
+        if(dto.getBirthday() != "") {
+            this.birthday = dto.getBirthday();
+        }
+        
     }
 }

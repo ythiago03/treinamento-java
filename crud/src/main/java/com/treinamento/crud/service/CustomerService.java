@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.treinamento.crud.models.dto.CustomerDto;
 import com.treinamento.crud.models.dto.FullSizeDto;
-import com.treinamento.crud.models.dto.SearchDto;
+import com.treinamento.crud.models.dto.PutDto;
 import com.treinamento.crud.models.tables.Address;
 import com.treinamento.crud.models.tables.Customer;
 import com.treinamento.crud.repository.AddressRepository;
@@ -50,4 +50,12 @@ public class CustomerService {
         customer.update(dto);
     }
     
+    public void putApi(String cpf, PutDto dto){
+        Customer customer = customerRepository.getReferenceByCpf(cpf);
+        customer.updateApi(dto);
+        if(!customer.getAddress().isEmpty()){
+            Address address = addressRepository.getReferenceById(customer.getAddress().get(0).getId());
+            address.updateApi(dto);
+        }   
+    }
 }
