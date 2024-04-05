@@ -56,6 +56,7 @@ public class FullSizeDto {
          if(!customer.getAddress().isEmpty())this.zipCode = customer.getAddress().get(0).getZipCode();
          if(!customer.getAddress().isEmpty())this.district = customer.getAddress().get(0).getDistrict();
          if(!customer.getAddress().isEmpty())this.number = customer.getAddress().get(0).getNumber();
+         if(!customer.getAddress().isEmpty())this.street = customer.getAddress().get(0).getStreet();
     }
     
 }

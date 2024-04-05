@@ -23,12 +23,13 @@ public class PutDto {
 
 
      public void putDto(Customer customer) {
-            this.name = customer.getName();
-            this.birthday = customer.getBirthday();
-            this.email = customer.getEmail();
+        this.name = customer.getName();
+        this.birthday = customer.getBirthday();
+        this.email = customer.getEmail();
          if(!customer.getAddress().isEmpty())this.complement = customer.getAddress().get(0).getComplement();
          if(!customer.getAddress().isEmpty())this.zipCode = customer.getAddress().get(0).getZipCode();
          if(!customer.getAddress().isEmpty())this.district = customer.getAddress().get(0).getDistrict();
          if(!customer.getAddress().isEmpty())this.number = customer.getAddress().get(0).getNumber();
+         if(!customer.getAddress().isEmpty())this.street = customer.getAddress().get(0).getStreet();
     }
 }
